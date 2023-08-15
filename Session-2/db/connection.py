@@ -1,7 +1,10 @@
 import sqlite3
 
+from helpers.hashing import *
+
+
 def connectDB():
-    return sqlite3.connect("data.db")
+    return sqlite3.connect("database.db")
 
 def init_db():
     connection = connectDB()
@@ -28,6 +31,46 @@ def add_user(username, password):
     
     cursor = connection.cursor()
 
-    cursor.execute(addingQuery, (username, password))
+    cursor.execute(addingQuery, (username, hash_password(password)))
 
     connection.commit()
+
+def get_all():
+    connection = connectDB()
+
+    gettingQuery = f'''
+        SELECT * FROM users
+        '''
+    
+    cursor = connection.cursor()
+
+    cursor.execute(gettingQuery)
+
+    return cursor.fetchall()
+
+def get_user_by_username(username):
+    connection = connectDB()
+
+    gettingQuery = f'''
+        SELECT * FROM users WHERE username = ?
+        '''
+    
+    cursor = connection.cursor()
+
+    cursor.execute(gettingQuery,(username,))
+
+    return cursor.fetchone()
+
+def get_user(username, password):
+    connection = connectDB()
+
+    gettingQuery = f'''
+        SELECT * FROM users WHERE username = ? AND password = ?
+        '''
+    
+    cursor = connection.cursor()
+
+    cursor.execute(gettingQuery,(username,hash_password(password)))
+
+    return cursor.fetchall()
+

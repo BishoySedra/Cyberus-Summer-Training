@@ -3,6 +3,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from db.connection import *
+from helpers.passwordPolicies import *
 
 app = Flask(__name__)
 app.secret_key = "password"
@@ -12,6 +13,7 @@ limiter = Limiter(
     default_limits=["200 per day", "50 per hour"]
 )
 
+## Routes
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'GET':
@@ -26,12 +28,17 @@ def register():
             flash('Username already exists!', "danger")
             return render_template('register.html')
         
-        flash('Username is registered Successfully!', "success")
-        add_user(username,password)
+        if(check_password_policies(password)):
+            add_user(username,password)
+            flash('Username is registered Successfully!', "success")
+        else:
+            flash("Your password is weak try another strong one!",'warning')
+            return render_template('register.html')
+        
     return redirect(url_for('login'))
 
 @app.route('/login', methods = ['POST','GET'])
-@limiter.limit('5 per minute')
+@limiter.limit('20 per minute')
 def login():
     if(request.method == 'POST'):
 
@@ -57,7 +64,10 @@ def index():
         return f'''Hello {session["username"]}!'''
     else:
         return "You're not logged in"
+## End of Routes
 
+## Begin of running app
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
+## End of running app

@@ -97,6 +97,7 @@ def login():
 @app.route("/")
 def index():
     if "username" in session:
+        print("jdksfhkjasd")
         return render_template(
             "index.html", gadgets=get_user_gadgets(session["user_id"])
         )

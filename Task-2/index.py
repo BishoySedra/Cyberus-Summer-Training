@@ -6,6 +6,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from db.connection import *
+from helpers.directory import *
 from helpers.fileUploadRestrictions import *
 from helpers.passwordPolicies import *
 
@@ -110,5 +111,7 @@ def index():
 ## Begin of running app
 if __name__ == "__main__":
     init_db()
+    if not is_directory_exist("static/uploads"):
+        create_directory("static/uploads")
     app.run(debug=True, port=5000)
 ## End of running app

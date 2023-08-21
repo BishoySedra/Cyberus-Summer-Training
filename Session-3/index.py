@@ -1,3 +1,6 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -6,8 +9,10 @@ from db.connection import *
 from helpers.fileUploadRestrictions import *
 from helpers.passwordPolicies import *
 
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "password"
+app.secret_key = os.environ.get("SECRET_KEY")
 limiter = Limiter(
     get_remote_address, app=app, default_limits=["200 per day", "50 per hour"]
 )

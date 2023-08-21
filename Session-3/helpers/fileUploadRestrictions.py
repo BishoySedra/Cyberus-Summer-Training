@@ -1,9 +1,9 @@
-max_size = 1024 * 1024 * 10
+max_size = 1024 * 1024 * 12  # 12 MB
 allowed_extensions = {"jpg", "png", "jpeg", "gif"}
 
 
 def allowed_file_extension(filename):
-    extension = filename.rsplit(".", 1)[1].lower()
+    extension = filename.rsplit(".")[1].lower()
     return "." in filename and extension in allowed_extensions
 
 

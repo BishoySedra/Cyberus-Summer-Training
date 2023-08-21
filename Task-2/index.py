@@ -1,11 +1,10 @@
 import os
 
+from db.connection import *
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
-from db.connection import *
 from helpers.directory import *
 from helpers.fileUploadRestrictions import *
 from helpers.passwordPolicies import *

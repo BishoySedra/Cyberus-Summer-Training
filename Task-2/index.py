@@ -1,11 +1,11 @@
 import os
 
-from db.connection import *
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
+from db.connection import *
 from helpers.directory import *
 from helpers.fileUploadRestrictions import *
 from helpers.passwordPolicies import *
@@ -37,12 +37,13 @@ def uploadGadget():
         description = request.form["description"]
         price = request.form["price"]
         image = request.files["image"]
-        image_url = f"uploads/{image.filename}"
-        image.save(f"static/{image_url}")
 
         if not allowed_file_size(image) or not allowed_file_extension(image.filename):
             flash("Invalid file uploaded!!", "danger")
             return render_template("upload-gadget.html")
+
+        image_url = f"uploads/{image.filename}"
+        image.save(f"static/{image_url}")
 
         add_gadget(user_id, title, description, price, image_url)
 

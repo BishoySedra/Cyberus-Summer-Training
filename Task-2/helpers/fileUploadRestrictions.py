@@ -1,3 +1,5 @@
+import os
+
 max_size = 1024 * 1024 * 12  # 12 MB
 allowed_extensions = {"jpg", "png", "jpeg", "gif"}
 
@@ -8,4 +10,8 @@ def allowed_file_extension(filename):
 
 
 def allowed_file_size(file):
-    return len(file.read()) <= max_size
+    start_position = file.tell()
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
+    file.seek(start_position)
+    return file_size <= max_size

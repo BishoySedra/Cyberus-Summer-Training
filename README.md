@@ -45,3 +45,29 @@
 - Introduction to Cookies
 - Cookie Attributes (Secure, HttpOnly, SameSite, etc.)
 - Cookie Attribute Attacks
+
+---
+
+## Session 4: SSTI Attacks and XSS Attacks
+
+**SSTI Attacks**:
+- Understanding Server-Side Template Injection (SSTI)
+- Prevention Strategies for SSTI Attacks
+- Input Validation and Sanitization
+- Content Security Policy (CSP)
+- Output Encoding
+- Security Headers
+- Session Management
+- Regular Security Audits
+
+**XSS Attacks**:
+- Cross-Site Scripting (XSS) Vulnerabilities
+- Prevention Strategies for XSS Attacks
+- Input Validation and Sanitization
+- Content Security Policy (CSP)
+- Output Encoding
+- Use of Security Headers
+- Web Application Firewalls (WAFs)
+- Session Management
+- Regular Security Audits
+

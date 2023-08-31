@@ -64,10 +64,21 @@
 - Cross-Site Scripting (XSS) Vulnerabilities
 - Prevention Strategies for XSS Attacks
 - Input Validation and Sanitization
-- Content Security Policy (CSP)
-- Output Encoding
-- Use of Security Headers
-- Web Application Firewalls (WAFs)
+
+---
+
+## Session 5: IDOR and Price Manipulation Attacks
+
+**IDOR (Insecure Direct Object Reference) Attacks**:
+- Understanding Insecure Direct Object Reference (IDOR) Vulnerabilities
+- Prevention Strategies for IDOR Attacks
+- Proper Access Control
 - Session Management
 - Regular Security Audits
 
+**Price Manipulation Attacks**:
+- Detecting and Preventing Price Manipulation Attacks
+- Input Validation and Sanitization
+- Proper Authorization and Authentication
+- Session Management
+- Regular Security Audits
